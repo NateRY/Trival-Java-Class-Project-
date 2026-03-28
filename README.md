@@ -21,3 +21,5 @@ Highscore Screen:
 ![Smarty Party (3)](https://github.com/user-attachments/assets/9d344a22-781a-45f2-9e63-ba23ab71f9f9)
 
 
+When the project is completed there will be a link/or download file that can be accessed on this page.
+
