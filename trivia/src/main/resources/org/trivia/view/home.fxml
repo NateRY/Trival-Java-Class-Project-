@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="org.trivia.controller.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        
+            
+        <Text style="-fx-font-size: 32px; -fx-font-family: Arial Black; -fx-fill: #818181; -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );" text="Welcome to Trivia Game" />
+
+            
+
+        <HBox alignment="CENTER" spacing="20">
+         <GridPane hgap="20" vgap="10.0">
+            <Button onAction="#handleLogin" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: white; -fx-font-family: Arial Narrow; -fx-font-weight: bold; -fx-background-color: linear-gradient(#61a2b1, #b0c60bff); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )" text="New Game" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button onAction="#exit" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: white; -fx-font-family: Arial Narrow; -fx-font-weight: bold; -fx-background-color: linear-gradient(#61a2b1, #2A5058); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )" text="Exit" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button onAction="#settings" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: white; -fx-font-family: Arial Narrow; -fx-font-weight: bold; -fx-background-color: linear-gradient(#61a2b1, #2A5058); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )" text="Settings" GridPane.rowIndex="2" />
+            <Button onAction="#leaderboard" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: white; -fx-font-family: Arial Narrow; -fx-font-weight: bold; -fx-background-color: linear-gradient(#61a2b1, #2A5058); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )" text="Leaderboard" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Button onAction="#addQuestion" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: white; -fx-font-family: Arial Narrow; -fx-font-weight: bold; -fx-background-color: linear-gradient(#61a2b1, #2A5058); -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )" text="Entry Manager" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <columnConstraints>
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+        </HBox>
+    </children>
+</VBox>
