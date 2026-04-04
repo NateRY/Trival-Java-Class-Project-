@@ -46,9 +46,9 @@ public class LoginController {
     @FXML
     public void handlerNewGame() throws IOException {
         org.trivia.controller.GameController.newGame(userTextField.getText(), selectedCategories);
-        for (var t : selectedCategories) {
-            System.out.println(t);
-        }
+//        for (var t : selectedCategories) {
+//            System.out.println(t);
+//        }
         App.setRoot("/org/trivia/view/gameview");
 
     }

@@ -215,7 +215,6 @@ public class DatabaseHandler {
         if  (!categories.isEmpty()){
             query = "SELECT * FROM entries WHERE category IN ('" + String.join("','", categories) + "') limit 10";
         }
-        System.out.println(query);
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement();

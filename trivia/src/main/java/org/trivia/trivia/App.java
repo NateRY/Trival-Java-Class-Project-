@@ -1,5 +1,6 @@
 package org.trivia.trivia;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         dbHandler = new DatabaseHandler();
+
 
         Parent root = loadFXML("/org/trivia/view/home");
         scene = new Scene(root, 800, 600);

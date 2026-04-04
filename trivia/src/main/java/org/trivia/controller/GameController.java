@@ -1,41 +1,43 @@
 package org.trivia.controller;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.trivia.model.Entry;
 import org.trivia.trivia.App;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class GameController {
     private static String username;
     private static List<String> selectedCategory;
+
     private int currentEntryId = 0;
     private String currentChoice;
+    private Button currentChoiceButton;
     private int currentScore;
     private  List<Entry> entries;
 
     @FXML
+    private Text hint;
+    @FXML
+    private GridPane optionsGridPane;
+    @FXML
+    public Button submitButton;
+    @FXML
     public Text questionText;
     @FXML
-    private TextField option1;
+    private Button option1;
     @FXML
-    private TextField option2;
+    private Button option2;
     @FXML
-    private TextField option3;
+    private Button option3;
     @FXML
-    private TextField option4;
+    private Button option4;
     @FXML
     private ProgressBar progressBar;
     @FXML Text scoreLabel;
@@ -51,51 +53,69 @@ public class GameController {
     @FXML
     public void initialize() {
         entries = App.getDbHandler().getEntryByCategories(selectedCategory);
+        Collections.shuffle(entries);
         if  (entries.isEmpty()) {
             questionText.setText("There are no questions to display.");
         }
+        progressLabel.setText("0 / " + String.valueOf(entries.size()));
         displayQuestion(currentEntryId);
+
+        submitButton.getStyleClass().add("-color-button-bg-focused");
     }
 
 
     @FXML
     private void getChoice(ActionEvent event){
-        TextField choice = (TextField) event.getSource();
+        Button choice = (Button) event.getSource();
         currentChoice = choice.getText();
+        currentChoiceButton = choice;
+        submitButton.setDisable(false);
+        if (!choice.getStyleClass().contains("danger")) {
+            choice.getStyleClass().add("danger");
+        }
+
+        for(var c: List.of(option1, option2, option3, option4)) {
+            if (c != choice) {
+                c.getStyleClass().remove("danger");
+            }
+        }
+        System.out.println("choice is " + currentChoice);
     }
 
-
     private void displayQuestion(int id) {
-        currentChoice = "";
-
-        if  (id <= entries.size()) {
+        submitButton.setDisable(true);
+        if  (id < entries.size()) {
             Entry entry = entries.get(id);
 
             questionText.setText(entry.getQuestion());
-            List<String> options =  Arrays.asList(entry.getAnswer(), entry.getOption2(), entry.getOption3(), entry.getOption4());
-            Collections.shuffle(options);
+            List<String> shuffledOptions =  entry.getShuffledOptions();
 
-            option1.setText(options.get(0));
-            option2.setText(options.get(1));
-            option3.setText(options.get(2));
-            option4.setText(options.get(3));
-
-            progressBar.setProgress(id * 1.0/ entries.size());
-            progressLabel.setText(String.valueOf(id) + " / " + String.valueOf(entries.size()));
-
-            if (currentChoice.equals(entry.getAnswer())){
-                ++currentScore;
-                scoreLabel.setText(String.valueOf(currentScore));
-            }
-
-            ++currentEntryId;
+            option1.setText(shuffledOptions.get(0));
+            option2.setText(shuffledOptions.get(1));
+            option3.setText(shuffledOptions.get(2));
+            option4.setText(shuffledOptions.get(3));
+        }
+        else {
+            questionText.setText("Congratulations! You have finished the game.");
+            submitButton.setDisable(true);
+            optionsGridPane.getChildren().clear();
+            // Handle save game below
         }
     }
 
-
-
     @FXML
     public void submitAction() {
+        currentChoiceButton.getStyleClass().remove("danger");
+        if (entries.get(currentEntryId).getAnswer().equals(currentChoice) ) {
+            ++currentScore;
+        }
+
+        ++currentEntryId;
+        progressBar.setProgress(currentEntryId * 1.0/ entries.size());
+        progressLabel.setText(currentEntryId + " / " + entries.size());
+        scoreLabel.setText("Score: " + String.format("%d", (int)(currentScore * 100.0 / (currentEntryId))) + "%");
+        currentChoice = "";
+
         displayQuestion(currentEntryId);
     }
 }

@@ -7,7 +7,7 @@ module org.trivia.trivia {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
-    requires jakarta.persistence;
+    requires atlantafx.base;
 
     opens org.trivia.trivia to javafx.fxml;
     opens org.trivia.controller to javafx.fxml;

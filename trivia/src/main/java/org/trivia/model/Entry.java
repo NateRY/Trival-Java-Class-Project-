@@ -2,10 +2,14 @@ package org.trivia.model;
 
 import org.trivia.trivia.App;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Entry {
-    private  long id;
-    private  String question;
-    private  String answer;
+    private long id;
+    private String question;
+    private String answer;
     private String option2;
     private String option3;
     private String option4;
@@ -73,6 +77,12 @@ public class Entry {
         return option4;
     }
 
+    public List<String> getShuffledOptions() {
+           List<String> options = Arrays.asList(answer, option2, option3, option4);
+           Collections.shuffle(options);
+           return options;
+    }
+
     public String getHint() {
         return hint;
     }
@@ -81,9 +91,7 @@ public class Entry {
         return category;
     }
 
-    public String getLevel() {
-        return level;
-    }
+    public String getLevel() {return level;}
 
     public void setId(long id) {
         this.id = id;

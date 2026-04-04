@@ -6,18 +6,36 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="7.0" prefWidth="600.0" spacing="10.0">
          <children>
-            <Button fx:id="homeButton" mnemonicParsing="false" text="Home" />
-            <Button fx:id="createButton" mnemonicParsing="false" text="Create" />
-            <Button fx:id="editButton" mnemonicParsing="false" text="EDIT" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" />
-            <Button fx:id="jsonButton" mnemonicParsing="false" text="JSON" />
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Save" />
+            <Button fx:id="homeButton" mnemonicParsing="false" text="Home">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="createButton" mnemonicParsing="false" text="Create">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="editButton" mnemonicParsing="false" text="EDIT">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="jsonButton" mnemonicParsing="false" text="JSON">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="saveButton" mnemonicParsing="false" text="Save">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
          </children>
          <opaqueInsets>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
