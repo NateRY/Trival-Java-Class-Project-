@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="org.trivia.controller.MainController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <children>
 
-        <Label styleClass="success" alignment="CENTER" text="Welcome to Trivia Game Party" wrapText="true" maxWidth="600" >
-        <font>
-            <Font name="Monaco" size="24.0" />
-        </font>
-        </Label>
-
-        <HBox alignment="CENTER" spacing="20">
-         <GridPane hgap="20" vgap="10.0">
-            <Button onAction="#handleLogin" prefHeight="40.0" prefWidth="120.0" styleClass="success" text="New Game" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <Button onAction="#exit" prefHeight="40.0" prefWidth="120.0" styleClass="danger" text="Exit" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <Button onAction="#settings" prefHeight="40.0" prefWidth="120.0" styleClass="outlined" text="Settings" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Button onAction="#leaderboard" prefHeight="40.0" prefWidth="120.0" styleClass="outlined" text="Leaderboard" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Button onAction="#addQuestion" prefHeight="40.0" prefWidth="120.0" styleClass="default" text="Entry Manager" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <columnConstraints>
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-        </HBox>
-    </children>
-</VBox>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.trivia.controller.MainController">
+   <top>
+      <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Trivia Party" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+               <font>
+                  <Font name="Bradley Hand Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: skyblue;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: rose;" BorderPane.alignment="CENTER">
+         <children>
+            <Button onAction="#handleLogin" mnemonicParsing="false" prefHeight="39.0" prefWidth="146.0" style="-fx-background-radius: 5; -fx-rotate: -5; -fx-background-color: lightblue;" text="New Game" textAlignment="CENTER" textFill="#ae0b0b">
+               <font>
+                  <Font name="Chalkduster" size="18.0" />
+               </font>
+            </Button>
+            <Button onAction="#manageEntries" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" style="-fx-background-radius: 5; -fx-rotate: 5; -fx-background-color: lightyellow;" text="Manage Entry" textAlignment="CENTER" textFill="#093497">
+               <font>
+                  <Font name="Chalkduster" size="18.0" />
+               </font>
+            </Button>
+            <Button onAction="#leaderboard" mnemonicParsing="false" prefHeight="39.0" prefWidth="167.0" style="-fx-background-radius: 5; -fx-rotate: -5; -fx-background-color: orange;" text="Leaderboard" textAlignment="CENTER" textFill="#093497">
+               <font>
+                  <Font name="Chalkduster" size="18.0" />
+               </font>
+            </Button>
+            <Button onAction="#exit" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" style="-fx-background-radius: 5; -fx-rotate: -3; -fx-background-color: lightgrey;" text="Quit" textAlignment="CENTER" textFill="#093497">
+               <font>
+                  <Font name="Chalkduster" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

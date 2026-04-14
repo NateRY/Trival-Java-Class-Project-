@@ -39,7 +39,7 @@
                   <Font name="Monaco" size="20.0" />
                </font>
             </TextField>
-            <Button onAction="#handlerNewGame" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Play" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button onAction="#newGame" mnemonicParsing="false" prefHeight="26.0" prefWidth="117.0" text="Play" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Monaco" size="20.0" />
                </font>

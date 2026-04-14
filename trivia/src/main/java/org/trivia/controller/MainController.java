@@ -17,30 +17,21 @@ public class MainController {
     private Label welcomeText;
 
     @FXML
-    private void play() {
-        welcomeText.setText("Playing...");
-    }
-
-    @FXML
     private void exit() {
         System.exit(0);
     }
 
     @FXML
-    private void settings() {
-        welcomeText.setText("Settings...");
-    }
-
-    @FXML
-    private void leaderboard() {
-        welcomeText.setText("Leaderboard...");
+    private void leaderboard() throws IOException {
+        App.setRoot("leaderboard");
     }
 
     @FXML
     public void handleLogin() throws IOException {
-        App.setRoot("/org/trivia/view/loginView");
+        App.setRoot("login");
     }
 
-    public void addQuestion() {
+    public void manageEntries() throws IOException {
+        App.setRoot("manager");
     }
 }

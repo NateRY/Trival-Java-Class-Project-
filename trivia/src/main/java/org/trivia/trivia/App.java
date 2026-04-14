@@ -20,7 +20,7 @@ public class App extends Application {
         dbHandler = new DatabaseHandler();
 
 
-        Parent root = loadFXML("/org/trivia/view/home");
+        Parent root = loadFXML("home");
         scene = new Scene(root, 800, 600);
         // scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
         stage.setTitle("Trivia Game");
@@ -33,7 +33,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/org/trivia/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
 
     }

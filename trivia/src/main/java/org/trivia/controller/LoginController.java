@@ -44,12 +44,13 @@ public class LoginController {
     }
 
     @FXML
-    public void handlerNewGame() throws IOException {
-        org.trivia.controller.GameController.newGame(userTextField.getText(), selectedCategories);
-//        for (var t : selectedCategories) {
-//            System.out.println(t);
-//        }
-        App.setRoot("/org/trivia/view/gameview");
-
+    public void newGame() throws IOException {
+        if (!userTextField.getText().strip().equals("")) {
+            org.trivia.controller.GameController.newGame(userTextField.getText(), selectedCategories);
+            App.setRoot("gameView");
+        }else{
+            userTextField.clear();
+            userTextField.requestFocus();
+        }
     }
 }

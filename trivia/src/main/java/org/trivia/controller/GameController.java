@@ -7,14 +7,19 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.trivia.model.Entry;
+import org.trivia.model.Game;
+import org.trivia.model.User;
 import org.trivia.trivia.App;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
 public class GameController {
     private static String username;
+    private User currentUser;
     private static List<String> selectedCategory;
+    private Game currentGame;
 
     private int currentEntryId = 0;
     private String currentChoice;
@@ -52,6 +57,8 @@ public class GameController {
 
     @FXML
     public void initialize() {
+        currentUser = new User(username);
+        currentGame = new Game(username);
         entries = App.getDbHandler().getEntryByCategories(selectedCategory);
         Collections.shuffle(entries);
         if  (entries.isEmpty()) {
@@ -100,6 +107,7 @@ public class GameController {
             submitButton.setDisable(true);
             optionsGridPane.getChildren().clear();
             // Handle save game below
+            App.getDbHandler().saveGames(currentGame);
         }
     }
 
@@ -118,4 +126,20 @@ public class GameController {
 
         displayQuestion(currentEntryId);
     }
+
+    @FXML
+    private void goHome() throws IOException {
+        App.setRoot("home");
+    }
+
+    @FXML
+    private void showLeaderboard() throws IOException {
+        App.setRoot("leaderboard");
+    }
+
+    @FXML
+    private void playAgain() throws IOException {
+        App.setRoot("game");
+    }
+
 }

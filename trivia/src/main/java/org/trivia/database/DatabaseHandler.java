@@ -1,9 +1,11 @@
 package org.trivia.database;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.trivia.model.Entry;
+import org.trivia.model.Game;
 
 public class DatabaseHandler {
     private static final String url = "jdbc:mysql://localhost:3306/trivia";
@@ -14,34 +16,34 @@ public class DatabaseHandler {
 
 
     public DatabaseHandler() {
-        try (Connection conn = DriverManager.getConnection(url, username, password);) {
-            if (conn != null) {
-                String createEntriesTable = "CREATE TABLE IF NOT EXISTS entries (" +
-                        "question TEXT NOT NULL," +
-                        "answer TEXT NOT NULL," +
-                        "option2 TEXT NOT NULL," +
-                        "option3 TEXT NOT NULL," +
-                        "option4 TEXT NOT NULL," +
-                        "hint TEXT," +
-                        "category TEXT NOT NULL," +
-                        "level TEXT NOT NULL" +
-                        ");";
-                String createScoresTable = "CREATE TABLE IF NOT EXISTS scores (" +
-                        "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
-                        "userName TEXT NOT NULL," +
-                        "score INTEGER NOT NULL," +
-                        "category TEXT NOT NULL," +
-                        "level TEXT NOT NULL," +
-                        "date TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
-                        ");";
-                Statement stmt = conn.createStatement();
-                stmt.execute(createEntriesTable);
-                stmt.execute(createScoresTable);
-                seedData(conn);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try (Connection conn = DriverManager.getConnection(url, username, password);) {
+//            if (conn != null) {
+//                String createEntriesTable = "CREATE TABLE IF NOT EXISTS entries (" +
+//                        "question TEXT NOT NULL," +
+//                        "answer TEXT NOT NULL," +
+//                        "option2 TEXT NOT NULL," +
+//                        "option3 TEXT NOT NULL," +
+//                        "option4 TEXT NOT NULL," +
+//                        "hint TEXT," +
+//                        "category TEXT NOT NULL," +
+//                        "level TEXT NOT NULL" +
+//                        ");";
+//                String createScoresTable = "CREATE TABLE IF NOT EXISTS scores (" +
+//                        "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
+//                        "userName TEXT NOT NULL," +
+//                        "score INTEGER NOT NULL," +
+//                        "category TEXT NOT NULL," +
+//                        "level TEXT NOT NULL," +
+//                        "date TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+//                        ");";
+//                Statement stmt = conn.createStatement();
+//                stmt.execute(createEntriesTable);
+//                stmt.execute(createScoresTable);
+//                seedData(conn);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void seedData(Connection conn) throws SQLException {
@@ -114,8 +116,10 @@ public class DatabaseHandler {
         try (
                 Connection conn = DriverManager.getConnection(url, username, password);
         ){
-            String query = "INSERT INTO entries(question, answer, option2, option3, option4, hint, category, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
+            String query = "INSERT INTO entries(question, answer, option2, option3, option4, hint, category_id, level) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id";
             Statement stmt = conn.createStatement();
+            int category_id = getCategoryId(entry.getCategory());
+
             try (PreparedStatement pstmt = conn.prepareStatement(query,  Statement.RETURN_GENERATED_KEYS)){
                 pstmt.setString(1, entry.getQuestion());
                 pstmt.setString(2, entry.getAnswer());
@@ -123,7 +127,7 @@ public class DatabaseHandler {
                 pstmt.setString(4, entry.getOption3());
                 pstmt.setString(5, entry.getOption4());
                 pstmt.setString(6, entry.getHint());
-                pstmt.setString(7, entry.getCategory());
+                pstmt.setInt(7, category_id);
                 pstmt.setString(8, entry.getLevel());
                 pstmt.execute();
 
@@ -140,6 +144,41 @@ public class DatabaseHandler {
         return id;
     }
 
+    public int insertCategory(String category){
+        int id = -1;
+        try (Connection conn = DriverManager.getConnection(url, username, password);){
+            String query = String.format("INSERT INTO categories(category) VALUES ('%s')", category);
+            Statement stmt = conn.createStatement();
+            int affectedRows = stmt.executeUpdate(query);
+            if(affectedRows == 1){
+                ResultSet rs = stmt.getGeneratedKeys();
+                id = rs.getInt(1);
+            }
+
+        }catch  (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return id;
+    }
+
+    public int getCategoryId(String category){
+        int id = -1;
+        try (Connection conn = DriverManager.getConnection(url, username, password);){
+            String query = String.format("SELECT id FROM categories WHERE LOWER(category) like ('%s')", category.toLowerCase());
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.first()){
+                id = rs.getInt(1);
+            }
+
+        }catch  (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return id;
+    }
+
     public void deleteEntry(long id){
         String query = String.format("DELETE FROM entries WHERE id = %d", id);
         try (
@@ -152,7 +191,7 @@ public class DatabaseHandler {
 
     public List<Entry> getEntries(){
         List<Entry> entries = new ArrayList<>();
-        String  query = "SELECT * FROM entries";
+        String  query = "SELECT e.*, c.category FROM entries e LEFT JOIN categories c ON e.category_id = c.id";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)){
@@ -170,11 +209,17 @@ public class DatabaseHandler {
     }
 
     public void updateEntry(Entry entry){
+        int category_id;
         try (
                 Connection conn = DriverManager.getConnection(url, username, password);
         ){
+            category_id = getCategoryId(entry.getCategory());
+            if (category_id == -1){
+                category_id = insertCategory(entry.getCategory());
+            }
+
             String query = "update entries set question = ?, answer = ?, option2 = ?, option3 = ?, " +
-                    "option4 = ?, hint = ?, category = ?, level = ? where id = ?";
+                    "option4 = ?, hint = ?, category_id = ?, level = ? where id = ?";
             Statement stmt = conn.createStatement();
             try (PreparedStatement pstmt = conn.prepareStatement(query,  Statement.RETURN_GENERATED_KEYS)){
                 pstmt.setString(1, entry.getQuestion());
@@ -183,7 +228,7 @@ public class DatabaseHandler {
                 pstmt.setString(4, entry.getOption3());
                 pstmt.setString(5, entry.getOption4());
                 pstmt.setString(6, entry.getHint());
-                pstmt.setString(7, entry.getCategory());
+                pstmt.setInt(7, category_id);
                 pstmt.setString(8, entry.getLevel());
                 pstmt.setLong(9, entry.getId());
                 pstmt.execute();
@@ -195,7 +240,7 @@ public class DatabaseHandler {
 
     public List<String> getCategories(){
         List<String> categories = new ArrayList<>();
-        String  query = "SELECT distinct category FROM entries";
+        String  query = "SELECT category FROM categories";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)){
@@ -210,10 +255,10 @@ public class DatabaseHandler {
 
     public List<Entry> getEntryByCategories(List<String> categories){
         List<Entry> entries = new ArrayList<>();
-        String  query = "SELECT * FROM entries";
+        String  query = "SELECT e.*, c.category FROM entries e LEFT JOIN  categories c ON e.category_id = c.id";
 
         if  (!categories.isEmpty()){
-            query = "SELECT * FROM entries WHERE category IN ('" + String.join("','", categories) + "') limit 10";
+            query = "SELECT e.*, c.category  FROM entries e LEFT JOIN categories c on e.category_id = c.id WHERE category IN ('" + String.join("','", categories) + "') limit 10";
         }
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -232,7 +277,102 @@ public class DatabaseHandler {
         return entries;
     }
 
+    public String getUserName(int userId){
+        String  query = String.format("SELECT name FROM users WHERE id = %d", userId);
+        String name = "";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+            if (rs.first()) {
+                name = rs.getString("name");
+            }
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return name;
+    }
 
+    public int getUserId(String username){
+        String  query = String.format("SELECT id FROM users WHERE LOWER(name) = %s", username.toLowerCase().strip());
+        int id = -1;
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+            if (rs.first()) {
+                id = rs.getInt("id");
+            }
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
 
+    public int insertUser(String userName){
+        int id = -1;
+        try (Connection conn = DriverManager.getConnection(url, username, password);){
+            String query = String.format("INSERT INTO users(name) VALUES ('%s')", userName);
+            Statement stmt = conn.createStatement();
+            int affectedRows = stmt.executeUpdate(query);
+            if(affectedRows == 1){
+                ResultSet rs = stmt.getGeneratedKeys();
+                id = rs.getInt(1);
+            }
+
+        }catch  (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
+
+    public List<Game> getGames(){
+        List<Game> games = new ArrayList<>();
+        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score,  " +
+                "FROM games g LEFT JOIN users u on g.user_id = u.id " +
+                "LEFT JOIN categories c on g.category_id = c.id " +
+                "ORDER BY score DESC";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+            while (rs.next()) {
+                games.add(new Game(rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getObject("game_date", LocalDateTime.class),
+                        rs.getString("category"),
+                        rs.getString("level"),
+                        rs.getDouble("score")));
+            }
+        }catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return games;
+    }
+
+    public int saveGames(Game game){
+        int id = -1;
+        List<Game> games = new ArrayList<>();
+        int categoryId = getCategoryId(game.getCategory());
+        if  (categoryId == -1){
+            categoryId = insertCategory(game.getCategory());
+        }
+        int userId = getUserId(game.getUsername());
+        if  (userId == -1){
+            userId = insertUser(game.getUsername());
+        }
+
+        String  query = String.format("INSERT INTO game(user_id, game_date, category_id, level, score, )", userId, game.getGameDate(), categoryId, game.getScore());
+        try (Connection conn = DriverManager.getConnection(url, username, password);){
+            Statement stmt = conn.createStatement();
+            int affectedRows = stmt.executeUpdate(query);
+            if(affectedRows == 1){
+                ResultSet rs = stmt.getGeneratedKeys();
+                id = rs.getInt(1);
+            }
+
+        }catch  (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
 
 }
