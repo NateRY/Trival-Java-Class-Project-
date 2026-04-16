@@ -51,7 +51,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/com.gluonhq/charm-glisten -->
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
