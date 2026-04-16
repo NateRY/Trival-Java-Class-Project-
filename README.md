@@ -27,15 +27,15 @@ Database Structures
 Tables:
 
 entries:
-	#id int auto_increment
-	#question varchar(255)
-	#answer varchar(64)
-	#option2 varchar(64)
-	#option3 varchar(64)
-	#option4 varchar(64)
-	#catogery varchar(32)
-	#hint	varchar(64)
-	#level enum('easy', 'medium', 'hard')
+	# id int auto_increment
+	# question varchar(255)
+	# answer varchar(64)
+	# option2 varchar(64)
+	# option3 varchar(64)
+	# option4 varchar(64)
+	# catogery varchar(32)
+	# hint	varchar(64)
+	# level enum('easy', 'medium', 'hard')
 
 games:
 	- id int auto_increment
