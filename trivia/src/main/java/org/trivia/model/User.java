@@ -7,7 +7,7 @@ public class User {
     private String name;
 
     public User(String name) {
-        this.id = App.getDbHandler().getUserId(name);
+        id = App.getDbHandler().getUserId(name);
         if (id == -1){
             id = App.getDbHandler().insertUser(name);
         }

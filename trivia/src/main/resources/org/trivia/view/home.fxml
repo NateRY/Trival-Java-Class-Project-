@@ -23,7 +23,7 @@
       <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: skyblue;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: rose;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: mistyrose;" BorderPane.alignment="CENTER">
          <children>
             <Button onAction="#handleLogin" mnemonicParsing="false" prefHeight="39.0" prefWidth="146.0" style="-fx-background-radius: 5; -fx-rotate: -5; -fx-background-color: lightblue;" text="New Game" textAlignment="CENTER" textFill="#ae0b0b">
                <font>

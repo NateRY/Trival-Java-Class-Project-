@@ -8,22 +8,51 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.trivia.controller.Manager">
    <bottom>
       <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: skyblue;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <TableView fx:id="tblView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="75.0" text="Question" />
-            <TableColumn prefWidth="75.0" text="Answer" />
-            <TableColumn prefWidth="75.0" text="Option2" />
-            <TableColumn prefWidth="75.0" text="Option3" />
-            <TableColumn prefWidth="75.0" text="Option4" />
-            <TableColumn prefWidth="75.0" text="Category" />
-        </columns>
-      </TableView>
+       <VBox fx:id="centerVbox">
+          <TableView onMouseClicked="#selectCurrentEntry" fx:id="tblView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn prefWidth="35.0" text="Id">
+                    <cellValueFactory><PropertyValueFactory property="id"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="175.0" text="Question">
+                    <cellValueFactory><PropertyValueFactory property="question"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Answer">
+                    <cellValueFactory><PropertyValueFactory property="answer"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Option2">
+                    <cellValueFactory><PropertyValueFactory property="option2"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Option3">
+                    <cellValueFactory><PropertyValueFactory property="option3"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Option4">
+                    <cellValueFactory><PropertyValueFactory property="option4"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Category">
+                    <cellValueFactory><PropertyValueFactory property="category"/> </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn prefWidth="75.0" text="Level">
+                    <cellValueFactory><PropertyValueFactory property="level"/> </cellValueFactory>
+                </TableColumn>
+
+            </columns>
+          </TableView>
+       </VBox>
    </center>
    <top>
       <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -33,20 +62,37 @@
                   <Font name="Chalkduster" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="editButton" mnemonicParsing="false" text="Edit">
+            <Button onAction="#showNewForm" fx:id="newButton" mnemonicParsing="false" text="New">
+                <font>
+                    <Font name="Chalkduster" size="16.0" />
+                </font>
+            </Button>
+            <Button onAction="#showEditForm" fx:id="editButton" mnemonicParsing="false" text="Edit">
                <font>
                   <Font name="Chalkduster" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete">
+            <Button onAction="#deleteEntry" fx:id="deleteButton" mnemonicParsing="false" text="Delete">
                <font>
                   <Font name="Chalkduster" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="saveButton" mnemonicParsing="false" text="Save">
+            <Button onAction="#saveEntry" fx:id="saveButton" mnemonicParsing="false" text="Save">
                <font>
                   <Font name="Chalkduster" size="16.0" />
                </font>
+            </Button>
+
+            <Button onAction="#saveNewEntry" fx:id="saveNewButton" mnemonicParsing="false" text="Save">
+                <font>
+                    <Font name="Chalkduster" size="16.0" />
+                </font>
+            </Button>
+
+            <Button onAction="#cancelEdit" fx:id="cancelButton" mnemonicParsing="false" text="Cancel">
+                <font>
+                    <Font name="Chalkduster" size="16.0" />
+                </font>
             </Button>
         </items>
       </ToolBar>

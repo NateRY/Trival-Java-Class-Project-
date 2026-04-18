@@ -16,13 +16,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+//        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         dbHandler = new DatabaseHandler();
-
 
         Parent root = loadFXML("home");
         scene = new Scene(root, 800, 600);
-        // scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
+//         scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
         stage.setTitle("Trivia Game");
         stage.setScene(scene);
         stage.show();

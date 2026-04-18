@@ -82,7 +82,7 @@ public class Game {
     }
 
     public int persist(){
-        id = App.getDbHandler().saveGames(this);
+        id = App.getDbHandler().saveGame(this);
         return id;
     }
 }

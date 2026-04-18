@@ -53,9 +53,7 @@ public class Entry {
         this.level = level;
     }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() {return id;}
 
     public String getQuestion() {
         return question;
