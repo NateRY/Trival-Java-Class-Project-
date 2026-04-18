@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.trivia.controller.QuestionEntry_controller">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: e6ded2;" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">
+               <font>
+                  <Font name="Impact" size="25.0" />
+               </font>
+            </Text>
+            <TextFlow fx:id="questionEntryFlow" lineSpacing="10.0" prefHeight="120.0" prefWidth="600.0" style="-fx-background-color: White; -fx-background-radius: 15;" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </TextFlow>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="177.0" prefWidth="600.0">
+               <children>
+                  <GridPane alignment="CENTER" hgap="5.0" prefWidth="581.0" vgap="5.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Level">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="Level_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="1" />
+                        <TextField fx:id="Subject_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Option2" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Option3" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Option4" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct Answer" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Impact" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="Correct_Answer_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="Option2_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="3" />
+                        <TextField fx:id="Option3_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <TextField fx:id="Option4_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <TextField fx:id="Hint_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Text fill="#4a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Question" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Impact" size="25.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="Question_Entry" alignment="TOP_LEFT" style="-fx-border-color: #1a9df1;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets bottom="10.0" top="10.0" />
+                     </opaqueInsets>
+                  </GridPane>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0" spacing="100.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#submitQuestion" opacity="0.96" prefHeight="34.0" prefWidth="114.0" style="-fx-background-color: #2B2B2B; -fx-background-radius: 20;">
+                           <font>
+                              <Font name="Impact" size="15.0" />
+                           </font>
+                           <graphic>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Submit" textFill="#ede8e8">
+                                 <font>
+                                    <Font name="Impact" size="19.0" />
+                                 </font>
+                              </Label>
+                           </graphic>
+                        </Button>
+                        <Button alignment="TOP_CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#goHome" prefHeight="43.0" prefWidth="140.0" style="-fx-background-color: #f4b400; -fx-background-radius: 20; -fx-padding: 10;" text="Main Menu">
+                           <font>
+                              <Font name="Impact" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></VBox>
+   </center>
+   <top>
+      <StackPane minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #4a0000;">
+                     <children>
+                        <SVGPath content="M 0 0L 800 0Q 700 60 800 120L 0 120Q 100 60 0 0Z" fill="#c1121f" scaleX="0.3" scaleY="0.3" />
+                        <Text fill="#e6ded2" strokeType="OUTSIDE" strokeWidth="0.0" text="Smarty Party" wrappingWidth="114.70126342773438">
+                           <font>
+                              <Font name="Impact" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </children>
+      </StackPane>
+   </top>
+   <bottom>
+      <StackPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4a0000;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
