@@ -34,6 +34,9 @@ INSERT INTO categories(category) values('Sports');
 INSERT INTO categories(category) values('Java');
 INSERT INTO categories(category) values('C++');
 
+
+
+
 -- Math (category_id: 1)
 INSERT INTO entries (question, answer, option2, option3, option4, hint, category_id, level) VALUES
 ('What is the square root of 144?', '12', '14', '10', '16', 'It is a dozen.', 1, 'easy'),
