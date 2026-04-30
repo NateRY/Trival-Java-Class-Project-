@@ -107,7 +107,7 @@ public class GameController {
             submitButton.setDisable(true);
             optionsGridPane.getChildren().clear();
             // Handle save game below
-            App.getDbHandler().saveGames(currentGame);
+            //App.getDbHandler().saveGames(currentGame);
         }
     }
 

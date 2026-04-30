@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: e6ded2;" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <StackPane minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: #4a0000;">
+                     <children>
+                        <SVGPath content="M 0 0L 800 0Q 700 60 800 120L 0 120Q 100 60 0 0Z" fill="#c1121f" scaleX="0.3" scaleY="0.3" />
+                        <Text fill="#e6ded2" strokeType="OUTSIDE" strokeWidth="0.0" text="Smarty Party" wrappingWidth="114.70126342773438">
+                           <font>
+                              <Font name="Impact" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </children>
+      </StackPane>
+   </top>
+   <bottom>
+      <StackPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4a0000;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

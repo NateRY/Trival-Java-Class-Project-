@@ -81,8 +81,8 @@ public class Game {
         return score;
     }
 
-    public int persist(){
-        id = App.getDbHandler().saveGames(this);
-        return id;
-    }
+//    public int persist(){
+//        id = App.getDbHandler().saveGames(this);
+//        return id;
+//    }
 }

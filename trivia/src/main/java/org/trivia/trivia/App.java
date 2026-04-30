@@ -20,10 +20,10 @@ public class App extends Application {
         dbHandler = new DatabaseHandler();
 
 
-        Parent root = loadFXML("home");
+        Parent root = loadFXML("Smarty_Party_HomeScreen");
         scene = new Scene(root, 800, 600);
         // scene.getStylesheets().add(App.class.getResource("styles/style.css").toExternalForm());
-        stage.setTitle("Trivia Game");
+        stage.setTitle("Smarty Party");
         stage.setScene(scene);
         stage.show();
     }
