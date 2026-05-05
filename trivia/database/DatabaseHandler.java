@@ -253,6 +253,7 @@ public class DatabaseHandler {
         }
     }
 
+
     public List<String> getCategories(){
         List<String> categories = new ArrayList<>();
         String  query = "SELECT category FROM categories";
@@ -339,22 +340,16 @@ public class DatabaseHandler {
         return id;
     }
 
-    public List<Game> getGames(){
+    public List<Game> getGame(){
         List<Game> games = new ArrayList<>();
-        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score,  " +
-                "FROM games g LEFT JOIN users u on g.user_id = u.id " +
-                "LEFT JOIN categories c on g.category_id = c.id " +
-                "ORDER BY score DESC";
+        String  query = "SELECT * FROM games order by score desc limit 10;";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)){
             while (rs.next()) {
-                games.add(new Game(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getObject("game_date", LocalDateTime.class),
-                        rs.getString("category"),
-                        rs.getString("level"),
-                        rs.getDouble("score")));
+                games.add(new Game(
+                        rs.getString("name")
+                        ));
             }
         }catch (SQLException e) {
             System.out.println(e.getMessage());

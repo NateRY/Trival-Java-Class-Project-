@@ -46,7 +46,7 @@ public class LoginController {
     @FXML
     public void newGame() throws IOException {
         if (!userTextField.getText().strip().equals("")) {
-            org.trivia.controller.GameController.newGame(userTextField.getText(), selectedCategories);
+            GameController.newGame(userTextField.getText(), selectedCategories);
             App.setRoot("gameView");
         }else{
             userTextField.clear();

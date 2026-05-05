@@ -1,11 +1,15 @@
 package org.trivia.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.trivia.model.Entry;
 import org.trivia.model.Game;
 import org.trivia.model.User;
@@ -16,6 +20,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameController {
+
+    private int timer;
+    private Timeline timeline;
     private static String username;
     private User currentUser;
     private static List<String> selectedCategory;
@@ -27,6 +34,8 @@ public class GameController {
     private int currentScore;
     private  List<Entry> entries;
 
+    @FXML
+    public Label timerLabel;
     @FXML
     private Text hint;
     @FXML
@@ -90,6 +99,7 @@ public class GameController {
     }
 
     private void displayQuestion(int id) {
+        setTimer();
         submitButton.setDisable(true);
         if  (id < entries.size()) {
             Entry entry = entries.get(id);
@@ -113,6 +123,7 @@ public class GameController {
 
     @FXML
     public void submitAction() {
+        timeline.stop();
         currentChoiceButton.getStyleClass().remove("danger");
         if (entries.get(currentEntryId).getAnswer().equals(currentChoice) ) {
             ++currentScore;
@@ -139,7 +150,28 @@ public class GameController {
 
     @FXML
     private void playAgain() throws IOException {
-        App.setRoot("game");
+        App.setRoot("login");
+    }
+
+    @FXML
+    private void exit(){
+        System.exit(0);
+    }
+
+
+    private void setTimer(){
+        timer = 60;
+        timerLabel.setText(""+ timer);
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            --timer;
+            if (timer < 0) {
+                timeline.stop();
+            }else {
+                timerLabel.setText("" + timer);
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
 }

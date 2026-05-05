@@ -31,6 +31,16 @@ public class MainController {
         App.setRoot("login");
     }
 
+    @FXML
+    public void exit() {
+        System.exit(0);
+    }
+
+    @FXML
+    public void goHome() throws IOException {
+        App.setRoot("home");
+    }
+
     public void manageEntries() throws IOException {
         App.setRoot("manager");
     }

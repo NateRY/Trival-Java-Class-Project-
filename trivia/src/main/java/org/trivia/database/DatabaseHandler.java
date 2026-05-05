@@ -245,10 +245,10 @@ public class DatabaseHandler {
 
     public List<Game> getGames(){
         List<Game> games = new ArrayList<>();
-        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score,  " +
+        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score " +
                 "FROM games g LEFT JOIN users u on g.user_id = u.id " +
                 "LEFT JOIN categories c on g.category_id = c.id " +
-                "ORDER BY score DESC";
+                "ORDER BY score DESC limit 10";
         try (Connection conn = DriverManager.getConnection(url, dbuser, dbpassword);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)){
