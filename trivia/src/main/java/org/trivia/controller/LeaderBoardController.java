@@ -44,7 +44,7 @@ public class LeaderBoardController {
 
             lbGridPane.add(userNameLabel, 1, i);
 
-            Label scoreLabel = new Label(games.get(i).getScore().toString());
+            Label scoreLabel = new Label(String.format("%.2f", games.get(i).getScore() * 100 ) + "%");
             scoreLabel.setAlignment(Pos.CENTER);
             scoreLabel.setPrefHeight(29);
             scoreLabel.setPrefWidth(100);
