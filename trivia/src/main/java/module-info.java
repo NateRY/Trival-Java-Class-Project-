@@ -1,7 +1,7 @@
 module org.trivia.trivia {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+
 
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;

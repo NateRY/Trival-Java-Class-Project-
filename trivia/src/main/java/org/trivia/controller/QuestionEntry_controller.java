@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class QuestionEntry_controller extends DatabaseHandler {
@@ -57,13 +58,8 @@ public class QuestionEntry_controller extends DatabaseHandler {
         });
 
 
-        String math = "Math";
-        String history = "History";
-        String TV = "TV";
-        String Sports = "Sports";
-        String Java = "Java";
-        String CPP = "C++";
-        subject_entry.getItems().addAll(math, history, TV, Sports, Java, CPP);
+        List<String> categories = db.getCategories();
+        subject_entry.getItems().addAll(categories);
         subject_entry.setOnAction(event -> {
             System.out.println("Subject entry selected");
         });

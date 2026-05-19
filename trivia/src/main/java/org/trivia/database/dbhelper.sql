@@ -110,3 +110,44 @@ INSERT INTO games (user_id, game_date, category_id, level, score) VALUES
 (1, '2026-04-17', 2, 'easy', 85.0),
 (4, '2026-04-17', 6, 'medium', 60.0);
 
+
+-- Add Categories
+INSERT INTO categories(category) VALUES('Music');
+INSERT INTO categories(category) VALUES('Art');
+INSERT INTO categories(category) VALUES('Movies');
+
+
+-- =========================
+-- MUSIC (category_id: 7)
+-- =========================
+INSERT INTO entries (question, answer, option2, option3, option4, hint, category_id, level) VALUES
+('Who is known as the King of Pop?', 'Michael Jackson', 'Elvis Presley', 'Prince', 'Justin Bieber', 'Thriller artist.', 7, 'easy'),
+('How many keys are on a standard piano?', '88', '76', '64', '100', 'Common full piano.', 7, 'medium'),
+('What symbol means to play loudly in music?', 'f', 'p', 'mf', 'pp', 'Forte.', 7, 'easy'),
+('What is the term for a group of four musicians?', 'Quartet', 'Trio', 'Duet', 'Solo', 'Four performers.', 7, 'easy'),
+('Which instrument has strings and a bow?', 'Violin', 'Drums', 'Flute', 'Trumpet', 'Orchestral string instrument.', 7, 'easy'),
+('What does BPM stand for in music?', 'Beats Per Minute', 'Bars Per Measure', 'Bass Per Melody', 'Beat Pitch Mode', 'Tempo measurement.', 7, 'medium');
+
+
+-- =========================
+-- ART (category_id: 8)
+-- =========================
+INSERT INTO entries (question, answer, option2, option3, option4, hint, category_id, level) VALUES
+('Who painted the Mona Lisa?', 'Leonardo da Vinci', 'Vincent van Gogh', 'Pablo Picasso', 'Claude Monet', 'Renaissance artist.', 8, 'easy'),
+('What art style uses small dots of color?', 'Pointillism', 'Cubism', 'Surrealism', 'Baroque', 'Tiny dot technique.', 8, 'medium'),
+('The Starry Night was painted by?', 'Vincent van Gogh', 'Picasso', 'Da Vinci', 'Rembrandt', 'Dutch painter.', 8, 'easy'),
+('Which artist cut off part of his ear?', 'Vincent van Gogh', 'Michelangelo', 'Dali', 'Monet', 'Famous mental health story.', 8, 'medium'),
+('What material is commonly used in sculpture?', 'Marble', 'Paper', 'Fabric', 'Glass', 'Greek statues often used it.', 8, 'easy'),
+('Which famous painting shows a melting clock?', 'The Persistence of Memory', 'Mona Lisa', 'The Scream', 'Guernica', 'Salvador Dali artwork.', 8, 'hard');
+
+
+-- =========================
+-- MOVIES (category_id: 9)
+-- =========================
+INSERT INTO entries (question, answer, option2, option3, option4, hint, category_id, level) VALUES
+('Who directed Titanic?', 'James Cameron', 'Spielberg', 'Nolan', 'Scorsese', 'Also made Avatar.', 9, 'easy'),
+('Which movie features Iron Man?', 'The Avengers', 'Batman', 'Superman', 'Spider-Man', 'Marvel team film.', 9, 'easy'),
+('What is the highest-grossing film (unadjusted)?', 'Avatar', 'Titanic', 'Endgame', 'Star Wars', 'Blue aliens.', 9, 'medium'),
+('Who played Jack in Titanic?', 'Leonardo DiCaprio', 'Brad Pitt', 'Tom Cruise', 'Johnny Depp', 'Famous 90s actor.', 9, 'easy'),
+('What studio made Toy Story?', 'Pixar', 'DreamWorks', 'Disney Animation', 'Universal', '3D animation pioneer.', 9, 'easy'),
+('Which movie features a wizard named Harry?', 'Harry Potter', 'Lord of the Rings', 'Narnia', 'Percy Jackson', 'Magic school series.', 9, 'easy');

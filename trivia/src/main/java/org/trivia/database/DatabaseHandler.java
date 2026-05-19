@@ -245,10 +245,10 @@ public class DatabaseHandler {
 
     public List<Game> getGames(){
         List<Game> games = new ArrayList<>();
-        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score,  " +
+        String  query = "SELECT g.id, u.name, g.game_date, c.category, g.level, g.score " +
                 "FROM games g LEFT JOIN users u on g.user_id = u.id " +
                 "LEFT JOIN categories c on g.category_id = c.id " +
-                "ORDER BY score DESC";
+                "ORDER BY score DESC limit 10";
         try (Connection conn = DriverManager.getConnection(url, dbuser, dbpassword);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)){
@@ -269,17 +269,21 @@ public class DatabaseHandler {
 
     public int saveGame(Game game){
         int id = -1;
-        int categoryId = getCategoryId(game.getCategory());
-        if  (categoryId == -1){
-            categoryId = insertCategory(game.getCategory());
-        }
+
+//        int categoryId = getCategoryId(game.getCategory());
+//        if  (categoryId == -1){
+//            categoryId = insertCategory(game.getCategory());
+//        }
         int userId = getUserId(game.getUsername());
         if  (userId == -1){
             userId = insertUser(game.getUsername());
         }
+        System.out.println(userId);
 
-        String  query = String.format("INSERT INTO game(user_id, game_date, category_id, level, score values(%d, '%s', %d, %f))",
-                userId, game.getGameDate(), categoryId, game.getScore());
+        String  query = String.format("INSERT INTO games(user_id, game_date, score) values(%d, '%s', %f)",
+                userId, game.getGameDate(), game.getScore());
+        System.out.println(query);
+
         try (Connection conn = DriverManager.getConnection(url, dbuser, dbpassword);){
             Statement stmt = conn.createStatement();
             int affectedRows = stmt.executeUpdate(query);

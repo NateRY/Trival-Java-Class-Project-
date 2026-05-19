@@ -23,7 +23,7 @@
                         <Font name="Impact" size="20.0" />
                      </font>
                   </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                  <TextField fx:id="nameEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
                   <Label text="Subject:" textFill="#4a0000">
                      <font>
                         <Font name="Impact" size="20.0" />

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: pink;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Trivia Party" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+               <font>
+                  <Font name="Bradley Hand Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: skyblue;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <GridPane hgap="5.0" vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Circle fill="#26ff1f" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label text="1" />
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="164.0" style="-fx-background-radius: 10; -fx-background-color: lightblue;" text="Peter" textAlignment="CENTER">
+                     <font>
+                        <Font name="Monaco" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="76.0" style="-fx-background-radius: 10; -fx-background-color: lightblue;" text="98%" textAlignment="CENTER">
+                     <font>
+                        <Font name="Monaco" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Circle fill="#26ff1f" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label text="2" />
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="164.0" style="-fx-background-radius: 10; -fx-background-color: lightblue;" text="Tom" textAlignment="CENTER">
+                     <font>
+                        <Font name="Monaco" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>
